@@ -1,0 +1,3 @@
+[submodule "git_modules/teenyicons.com"]
+	path = git_modules/teenyicons.com
+	url = https://github.com/teenyicons/teenyicons.com.git
