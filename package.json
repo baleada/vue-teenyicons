@@ -1,6 +1,6 @@
 {
   "name": "@baleada/vue-teenyicons",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Vue components that wrap up the Teenyicons set for the Baleada tookit",
   "type": "module",
   "module": "lib/index.js",
