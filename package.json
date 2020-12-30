@@ -11,7 +11,7 @@
     "prepare": "rollup --config rollup.config.js",
     "test:only": "run() { npx uvu tests/$2 $1.test.js$; }; run",
     "test": "npm run test:only .",
-    "update-icons": "cd git_modules/teenyicons && git fetch",
+    "update-icons": "cd git_modules/teenyicons.com && git fetch",
     "dev": "vite"
   },
   "repository": {
@@ -35,7 +35,7 @@
   },
   "homepage": "https://baleada.netlify.com",
   "devDependencies": {
-    "@baleada/prepare": "^0.4.26",
+    "@baleada/prepare": "^0.4.28",
     "@vue/compiler-sfc": "^3.0.4",
     "rollup": "^2.35.1",
     "uvu": "^0.5.1",
