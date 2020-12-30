@@ -35,7 +35,7 @@
   },
   "homepage": "https://baleada.netlify.com",
   "devDependencies": {
-    "@baleada/prepare": "^0.4.28",
+    "@baleada/prepare": "^0.4.29",
     "@vue/compiler-sfc": "^3.0.4",
     "rollup": "^2.35.1",
     "uvu": "^0.5.1",

@@ -1,9 +1,11 @@
-import { configureable } from '@baleada/prepare'
-import toComponent from './source-transforms/toComponent.js'
-import toIndex from './source-transforms/toIndex.js'
-import toIcons from './source-transforms/toIcons.js'
+import { configureable, getIcons } from '@baleada/prepare'
 
-const icons = toIcons()
+const icons = getIcons({
+  set: 'Teenyicons',
+  dirs: ['filled', 'outline'],
+  basePath: 'git_modules/teenyicons.com/assets/icons',
+  toSnakeCased: ({ name, dir }) => `${name}${dir === 'outline' ? '-outline' : ''}`,
+})
 
 export default configureable('vite')
   .alias({
@@ -11,15 +13,8 @@ export default configureable('vite')
   })
   .koa(configureable => 
     configureable
-      .virtual(({ testable }) => ({
-        test: testable.idEndsWith('src/index.js').test,
-        transform: () => toIndex(icons)
-      }))
-      .virtual(({ testable }) => ({
-        test: param => 
-          icons.some(({ componentName }) => testable.idEndsWith(`src/components/${componentName}.vue`).test(param)),
-        transform: ({ id }) => toComponent(icons.find(({ componentName }) => id.endsWith(`${componentName}.vue`)))
-      }))
+      .virtual.iconComponentIndex({ icons })
+      .virtual.iconComponents({ icons })
       .configure()
   )
   .configure()
