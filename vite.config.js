@@ -11,19 +11,14 @@ export default configureable('vite')
   })
   .koa(configureable => 
     configureable
-      .virtual(({ createIdEndsWith }) => ({
-        test: createIdEndsWith('src/index.js'),
+      .virtual(({ testable }) => ({
+        test: testable.idEndsWith('src/index.js').test,
         transform: () => toIndex(icons)
       }))
-      .virtual(({ createIdEndsWith }) => ({
-        test: ({ id }) => {
-          console.log(id)
-          return icons.some(({ componentName }) => createIdEndsWith(`src/components/${componentName}.vue`)({ id }))
-        },
-        transform: ({ id }) => ({
-          type: 'vue',
-          source: toComponent(icons.find(({ componentName }) => id.endsWith(`${componentName}.vue`)))
-        })
+      .virtual(({ testable }) => ({
+        test: param => 
+          icons.some(({ componentName }) => testable.idEndsWith(`src/components/${componentName}.vue`).test(param)),
+        transform: ({ id }) => toComponent(icons.find(({ componentName }) => id.endsWith(`${componentName}.vue`)))
       }))
       .configure()
   )
